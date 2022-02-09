@@ -1,18 +1,28 @@
-from dataclasses import dataclass
+from attrs import define, field
 
 
-@dataclass
+@define
 class Flag:
 
-    name: str
-    status: bool
+    #This enforces good flag naming conventions,
+    #and excludes the status of a flag from eq's.
+    name: str = field(eq=str.lower)
+    status: bool = field(eq = False)
+
+
 
 class FlagManager:
 
-    def add_flag(self, flag : Flag):
+    flags : set[Flag] = set
+
+    def add_flag(self, flag : Flag) -> None:
 
         pass
 
-    def get_state(self, flag):
+    def get_state(self, flag : Flag) -> bool:
+
+        pass
+
+    def set_state(self, flag : Flag) -> None:
 
         pass
